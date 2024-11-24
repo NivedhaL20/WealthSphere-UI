@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title> Wealth Sphere - Finance Tracker</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <style>
+    .main-content {
+      margin-left: 10px;
+      padding: 10px;
+    }
+
+    .main-content h1 {
+      font-size: 2.5rem;
+      font-weight: bold;
+    }
+
+    hr {
+      border: none;
+      height: 1.5px;
+      /* Thickness of the broad line */
+      background-color: white;
+      /* The color of the bottom line */
+      margin-top: 2%;
+      /* Space between the content and the line */
+      margin-bottom: 20px;
+      /* Optional: space below the line */
+    }
+
+    /* General body styling */
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f7fa;
+      margin: 0;
+      padding: 0;
+    }
+
+    /* Container for the form */
+    form {
+      max-width: 600px;
+      /* margin: 50px auto; */
+      padding: 30px;
+      background-color: whitesmoke;
+    }
+
+    /* Form heading */
+    h1 {
+      color: #333;
+      font-size: 2rem;
+      margin-bottom: 15px;
+    }
+
+    /* Form paragraph */
+    p {
+      text-align: center;
+      color: #666;
+      font-size: 1rem;
+      margin-bottom: 25px;
+    }
+
+    /* Label for inputs */
+    label {
+      font-size: 14px;
+      font-weight: bold;
+      color: #333;
+      margin-bottom: 8px;
+      display: block;
+    }
+
+    /* Input fields */
+    input[type="number"],
+    input[type="text"] {
+      width: 100%;
+      padding: 12px;
+      margin: 10px 0 20px 0;
+      font-size: 16px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+    }
+
+    /* Focus effect on inputs */
+    input[type="number"]:focus,
+    input[type="text"]:focus {
+      border-color: #4CAF50;
+      outline: none;
+      box-shadow: 0 0 5px rgba(76, 175, 80, 0.5);
+    }
+
+    /* Input error message */
+    span {
+      color: red;
+      font-size: 12px;
+    }
+
+    /* Button styling */
+    button {
+      width: 100%;
+      padding: 15px;
+      background-color: #4CAF50;
+      color: black;
+      font-size: 16px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    /* Button hover and active states */
+    button:hover {
+      background-color: #45a049;
+    }
+
+    button:active {
+      background-color: #388e3c;
+    }
+
+    /* Responsive Styling: Make form adjust on smaller screens */
+    @media (max-width: 600px) {
+      form {
+        padding: 20px;
+        margin: 20px;
+      }
+
+      h1 {
+        font-size: 1.8rem;        
+      }
+
+      p {
+        font-size: 0.9rem;
+      }
+
+      input[type="number"],
+      input[type="text"] {
+        font-size: 14px;
+        padding: 10px;
+      }
+
+      button {
+        font-size: 14px;
+        padding: 12px;
+      }
+    }
+
+    .main-container {
+      display: flex;
+      height: 99vh;
+    }
+
+    .sidebar {
+      width: 250px;
+
+    }
+
+    .sidebar iframe {
+      width: 100%;
+      height: 100%;
+    }
+
+    .content-body {
+      flex: 1;
+      overflow-y: auto;
+      padding: 30px;
+      width: 100%;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f9f9f9;
+    }
+
+    .tabs {
+      max-width: 100%;
+      margin: 50px auto;
+      background: #fff;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .tab-buttons {
+      display: flex;
+      border-bottom: 1px solid #ddd;
+    }
+
+    .tab-button {
+      flex: 1;
+      padding: 15px;
+      text-align: center;
+      cursor: pointer;
+      background: #f4f4f4;
+      border: none;
+      outline: none;
+      font-size: 16px;
+      transition: background-color 0.3s;
+    }
+
+    .tab-button.active {
+      background: #6359E9;
+      color: #fff;
+    }
+
+    .tab-button:hover {
+      background: #e0e0e0;
+    }
+
+    .tab-content {
+      padding: 20px;
+    }
+
+    .tab {
+      display: none;
+    }
+
+    .tab.active {
+      display: block;
+    }
+
+    table,
+    th,
+    td {
+      border: 1px solid black;
+      border-collapse: collapse;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="main-container">
+    <div class="sidebar">
+      <iframe src="/pages/commonCode/layout.html" name="layout">
+      </iframe> 
+    </div>
+    <div class="content-body">
+      <h1>Income</h1>
+      <div class="tabs">      
+      <div class="tab-buttons">
+        <button class="tab-button active" onclick="showTab('viewIncome')">View Income</button>
+        <button class="tab-button" onclick="showTab('addEditIncome')">Add/Edit Income</button>
+      </div>
+
+      <div class="tab-content">
+        <div id="viewIncome" class="tab active">
+          <table style="width:100%" id="dataTable">
+            <tr>
+              <th>Income Source</th>
+              <th>Date</th>
+              <th>Total CTC</th>
+              <th>Monthly Income</th>
+              <th>Actions</th>
+            </tr>   
+          </table>
+        </div>
+        <div id="addEditIncome" class="tab">
+          <form id="incomeForm">            
+            <label>Income Source</label>
+            <select class="custom-select" id="incomeSource">
+              <option selected="">Select the Source</option>
+              <option value="Salary">Salary</option>
+              <option value="Rent">Rent</option>
+              <option value="Stocks">Stocks</option>
+              <option value="Freelancing">Freelancing</option>
+              <option value="Others">Others</option>
+            </select>
+            <label id="others" style="display: none;">Other Income Source </label>
+            <input type="text" id="otherSource" style="display: none;" placeholder="Enter your  other Income Source">
+            <span id="incomeSourceError"></span><br>
+
+            <label>Date</label>
+            <input type="date" id="date" placeholder="Enter the Date" required>
+
+            <label>Total CTC</label>
+            <input type="number" id="ctc" placeholder="Enter your Total CTC" required>
+            <span id="ctcError"></span><br>
+
+            <label>Monthly Income</label>
+            <input type="number" id="monthlyIncome" placeholder="Enter your Monthly Income" required>
+            <span id="monthlyIncomeError"></span><br>
+
+            <button type="submit">Submit</button>
+          </form>
+        </div>
+      </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- <button onclick="deleteRow()" id="deleteButton">Delete</button> -->
+
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+
+      fetch('/apiResponse/income.json')
+      .then(response => response.json()) 
+      .then(data => {
+        const tableBody = document.querySelector('#dataTable tbody');
+        
+        data.forEach(user => {
+          const row = document.createElement('tr');
+          
+          const sourceCell = document.createElement('td');
+          sourceCell.textContent = user.IncomeSource;
+          row.appendChild(sourceCell);
+          
+          const dateCell = document.createElement('td');
+          dateCell.textContent = user.Date;
+          row.appendChild(dateCell);
+          
+          const totalCTCCell = document.createElement('td');
+          totalCTCCell.textContent = user.TotalCTC;
+          row.appendChild(totalCTCCell);
+          
+          const monthlyIncomeCell = document.createElement('td');
+          monthlyIncomeCell.textContent = user.MonthlyIncome;
+          row.appendChild(monthlyIncomeCell);
+
+          const actionCell = document.createElement('td');
+          const deleteButton = document.createElement('button');
+          deleteButton.textContent = 'Delete';  
+
+          deleteButton.onclick = function(){
+            row.remove();            
+          };
+
+          // actionCell.appendChild( )
+          // actionCell.se
+
+         actionCell.appendChild(deleteButton);
+         row.appendChild(actionCell);
+         
+          tableBody.appendChild(row);  // Append the row to the table body
+        });
+      })
+      .catch(error => {
+        console.error('Error loading the JSON file:', error);
+      });       
+
+    document.getElementById("incomeForm").onsubmit = function (event) {
+      event.preventDefault();
+
+      if (!incomeValidation()) {
+        return;
+      }
+    }
+
+    function showTextBox() {
+      var incomeSource = document.getElementById("incomeSource").value;
+      if (incomeSource == 'Others') {
+        document.getElementById("otherSource").style.display = 'block';
+        document.getElementById("others").style.display = 'block';
+      }
+      else {
+        document.getElementById("otherSource").style.display = 'none';
+        document.getElementById("others").style.display = 'none';
+      }
+    }
+
+    function showTab(tabId) {
+      // Hide all tabs
+      document.querySelectorAll('.tab').forEach(tab => tab.classList.remove('active'));
+
+      // Remove active class from all buttons
+      document.querySelectorAll('.tab-button').forEach(button => button.classList.remove('active'));
+
+      // Show the selected tab
+      document.getElementById(tabId).classList.add('active');
+
+      // Highlight the active button by matching the onclick attribute
+      const activeButton = Array.from(document.querySelectorAll('.tab-button')).find(button =>
+        button.getAttribute('onclick').includes(tabId)
+      );
+      if (activeButton) {
+        activeButton.classList.add('active');
+      }
+    }
+
+    function incomeValidation() {
+      showTextBox();
+
+      var source = document.getElementById("otherSource").value
+      const dateOfIncome = document.getElementById("date").value
+      const totalCTC = document.getElementById("ctc").value
+      const income = document.getElementById("monthlyIncome").value
+      var valid = true
+
+      if (source !="" && /[^a-zA-Z\s]+$/.test(source)) {
+        document.getElementById("incomeSourceError").innerText = "Income source should only contain letters and spaces";
+        valid = false;
+      }
+      else {      
+        document.getElementById("incomeSourceError").innerText = ""
+      }
+
+      if (totalCTC <= -1 || isNaN(totalCTC)) {
+        document.getElementById("ctcError").innerText = "CTC should be positive"
+        valid = false;
+      }
+      else {
+        document.getElementById("ctcError").innerText = ""
+      }
+
+      if (income <= 0 || isNaN(income)) {
+        document.getElementById("monthlyIncomeError").innerText = "Income should be positive"
+        valid = false;
+      }
+      else {
+        document.getElementById("monthlyIncomeError").innerText = ""
+      }
+      return valid;
+    }
+    document.getElementById("incomeSource").onchange = incomeValidation
+    document.getElementById("otherSource").onkeyup = incomeValidation
+    document.getElementById("ctc").onkeyup = incomeValidation
+    document.getElementById("ctc").onchange = incomeValidation 
+    document.getElementById("monthlyIncome").onkeyup = incomeValidation
+    document.getElementById("monthlyIncome").onchange = incomeValidation
+
+  </script>
+</body>
+</html>

@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wealth Sphere - Finance Tracker</title>
+    <style>
+        * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
+}
+
+body {
+    background-color: #f2f2f2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    font-size: 16px;
+    color: #333;
+}
+
+form {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+}
+
+h1 {
+    text-align: center;
+    font-size: 28px;
+    margin-bottom: 30px;
+    color: #4CAF50;
+}
+
+label {
+    display: block;
+    font-size: 14px;
+    color: #555;
+    margin-bottom: 8px;
+}
+
+input {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 20px;
+    border: 2px solid #ddd;
+    border-radius: 6px;
+    font-size: 16px;
+    transition: border-color 0.3s ease;
+}
+
+input:focus {
+    border-color: #4CAF50;
+    outline: none;
+}
+
+span {
+    font-size: 12px;
+    color: #e74c3c;
+    margin-top: -10px;
+    margin-bottom: 20px;
+    display: block;
+}
+
+button {
+    width: 100%;
+    padding: 12px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+input[type="reset"] {
+    width: 100%;
+    padding: 12px;
+    background-color: #ddd;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 10px;
+}
+
+input[type="reset"]:hover {
+    background-color: #ccc;
+}
+
+@media (max-width: 480px) {
+    form {
+        padding: 20px;
+        width: 90%;
+    }
+
+    h1 {
+        font-size: 24px;
+    }
+
+    input, button, input[type="reset"] {
+        font-size: 14px;
+    }
+}
+
+    </style>
+</head>
+<body>
+    <form id="loginForm">
+    <h1>Login</h1>
+    <label>Email id</label>
+    <input id="loginEmail" type="email" placeholder="Enter your email">
+    <span id="loginEmailError"></span><br>
+
+
+    <label>Password</label>
+    <input id="loginPassword" type="password" placeholder="Enter your password">
+    <span id="loginPasswordError"></span><br>
+
+    <button type="submit" onclick="redirect()">Login</button>
+    <input value="Clear" type="reset">
+
+</form>
+<script>
+    document.getElementById("loginForm").onsubmit = function(event) {
+    event.preventDefault();
+
+    if (!loginValidation()){
+        return ;
+    }
+
+    }
+    function loginValidation(){
+        var loginEmailInput=document.getElementById("loginEmail").value
+        var loginPasswordInput=document.getElementById("loginPassword").value
+        var valid=true
+
+        if(!/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(loginEmailInput)){
+            document.getElementById("loginEmailError").innerText="Your Email is incorrect"
+            valid=false
+        }
+        else{
+            document.getElementById("loginEmailError").innerText=""
+        }
+        if(loginPasswordInput.length < 8){
+            document.getElementById("loginPasswordError").innerText="Your Password should contain atleast 8 characters"
+            valid=false
+        }
+        else{
+            document.getElementById("loginPasswordError").innerText=""
+        }
+
+        return valid;
+
+    }
+    document.getElementById("loginEmail").onkeyup=loginValidation
+    document.getElementById("loginPassword").onkeyup=loginValidation
+
+    function redirect(){
+        if (loginValidation){
+            window.location.href = "../dashboardOverview/overview.html";
+        }
+    }
+</script>
+</body>
+</html>

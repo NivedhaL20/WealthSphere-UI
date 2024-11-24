@@ -1,0 +1,23 @@
+            [
+                {
+                    "InvestType": "Fixed Deposite",
+                    "FinancialInstitute": "Bank",
+                    "Date": "01-11-2024",
+                    "Amount": 10000,
+                    "Purpose": "saving"
+                },
+                {
+                    "InvestType": "Recurring Deposite",
+                    "FinancialInstitute": "Bank",
+                    "Date": "10-11-2024",
+                    "Amount": 1000,
+                    "Purpose": "saving"
+                },
+                {
+                    "InvestType": "Gold Scheme",
+                    "FinancialInstitute": "Jewlery shop",
+                    "Date": "01-11-2024",
+                    "Amount": 2000,
+                    "Purpose": "saving"
+                }
+            ]

@@ -1,0 +1,20 @@
+[
+    {
+        "Expense Type": "Rent",
+        "Mode of Payment":"Gpay",
+        "Date": "01-11-2024",
+        "Amount": 12000        
+    },
+    {
+        "Expense Type": "Grocery",
+        "Mode of Payment":"Cash",
+        "Date": "11-11-2024",
+        "Amount": 1200           
+    },
+    {
+       "Expense Type": "Loan",
+        "Mode of Payment":"Gpay",
+        "Date": "01-10-2024",
+        "Amount": 12000            
+    }
+] 

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Income Tabs</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f9f9f9;
+    }
+
+    .tabs {
+      max-width: 600px;
+      margin: 50px auto;
+      background: #fff;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .tab-buttons {
+      display: flex;
+      border-bottom: 1px solid #ddd;
+    }
+
+    .tab-button {
+      flex: 1;
+      padding: 15px;
+      text-align: center;
+      cursor: pointer;
+      background: #f4f4f4;
+      border: none;
+      outline: none;
+      font-size: 16px;
+      transition: background-color 0.3s;
+    }
+
+    .tab-button.active {
+      background: #007BFF;
+      color: #fff;
+    }
+
+    .tab-button:hover {
+      background: #e0e0e0;
+    }
+
+    .tab-content {
+      padding: 20px;
+    }
+
+    .tab {
+      display: none;
+    }
+
+    .tab.active {
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <div class="tabs">
+    <!-- Tab Buttons -->
+    <div class="tab-buttons">
+      <button class="tab-button active" onclick="showTab('viewIncome')">View Income</button>
+      <button class="tab-button" onclick="showTab('addEditIncome')">Add/Edit Income</button>
+    </div>
+
+    <!-- Tab Content -->
+    <div class="tab-content">
+      <div id="viewIncome" class="tab active">
+        <h2>View Income</h2>
+        <p>This section allows you to view your income details.</p>
+      </div>
+      <div id="addEditIncome" class="tab">
+        <h2>Add/Edit Income</h2>
+        <p>This section allows you to add or edit your income details.</p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function showTab(tabId) {
+      // Hide all tabs
+      document.querySelectorAll('.tab').forEach(tab => tab.classList.remove('active'));
+
+      // Remove active class from all buttons
+      document.querySelectorAll('.tab-button').forEach(button => button.classList.remove('active'));
+
+      // Show the selected tab
+      document.getElementById(tabId).classList.add('active');
+
+      // Highlight the active button by matching the onclick attribute
+      const activeButton = Array.from(document.querySelectorAll('.tab-button')).find(button =>
+        button.getAttribute('onclick').includes(tabId)
+      );
+      if (activeButton) {
+        activeButton.classList.add('active');
+      }
+    }
+  </script>
+</body>
+</html>

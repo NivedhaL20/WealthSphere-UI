@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wealth Sphere - Finance Tracker</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        .main-content {
+            margin-left: 10px;
+            padding: 10px;
+        }
+
+        .main-content h1 {
+            font-size: 2.5rem;
+            font-weight: bold;
+        }
+
+        hr {
+            border: none;
+            height: 1.5px;
+            background-color: white;
+            margin-top: 2%;
+            margin-bottom: 20px;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f7fa;
+            margin: 0;
+            padding: 0;
+        }
+
+        form {
+            max-width: 600px;
+            padding: 30px;
+            background-color: whitesmoke;
+        }
+
+        h1 {
+            color: #333;
+            font-size: 2rem;
+            margin-bottom: 15px;
+        }
+
+        p {
+            text-align: center;
+            color: #666;
+            font-size: 1rem;
+            margin-bottom: 25px;
+        }
+
+        button {
+            width: 100%;
+            padding: 15px;
+            background-color: #4CAF50;
+            color: white;
+            font-size: 16px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        button:active {
+            background-color: #388e3c;
+        }
+
+        @media (max-width: 600px) {
+            form {
+                padding: 20px;
+                margin: 20px;
+            }
+
+            h1 {
+                font-size: 1.8rem;
+            }
+
+            p {
+                font-size: 0.9rem;
+            }
+
+            button {
+                font-size: 14px;
+                padding: 12px;
+            }
+        }
+
+        .main-container {
+            display: flex;
+            height: 99vh;
+        }
+
+        .sidebar {
+            width: 250px;
+        }
+
+        .sidebar iframe {
+            width: 100%;
+            height: 100%;
+        }
+
+        .content-body {
+            flex: 1;
+            overflow-y: auto;
+            padding: 30px;
+        }
+
+        .container_1,
+        .container_2,
+        .container_3,
+        .container_4,
+        .container_5 {
+            width: 100%;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            font-family: Arial, sans-serif;
+        }
+
+        h5 {
+            font-size: 1.2rem;
+            text-align: center;
+            color: #4CAF50;
+        }
+
+        .video-container_1,
+        .video-container_2,
+        .video-container_3,
+        .video_container_4,
+        .video_container_5 {
+            text-align: center;
+        }
+
+        #investmentVideo_1,
+        #investmentVideo_2,
+        #investmentVideo_3,
+        #investmentVideo_4,
+        #investmentVideo_5 {
+            width: 100%;
+            height: 450px;
+            display: none;
+            margin-top: 20px;
+        }
+
+        .description_1,
+        .description_2,
+        .description_3,
+        .description_4,
+        .description_5 {
+            font-size: 1rem;
+            text-align: center;
+            margin: 20px 0;
+            color: #555;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="main-container">
+        <div class="sidebar">
+            <iframe src="../commonCode/layout.html" name="layout"></iframe>
+        </div>
+        <div class="content-body">
+            <div class="container-fluid">
+                <h1>Learn on Investment</h1>
+                <div class="row">
+                    <div class="col-md-4">
+                        <form>
+                            <div class="container_1">
+                                <h5>Learn about Stocks</h5>
+                                <p class="description_1">Investing can help grow your wealth. Watch this video to learn
+                                    the
+                                    basics of Stocks and how to get started.</p>
+                                <div class="video-container_1">
+                                    <button id="showVideoBtn_1"
+                                        aria-label="Click to watch a video on how to invest">Watch Video
+                                        on Stocks</button>
+                                    <iframe id="investmentVideo_1" src="https://www.youtube.com/embed/dQw4w9WgXcQ"
+                                        title="Investment Video"></iframe>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="col-md-4">
+                        <form>
+                            <div class="container_2">
+                                <h5>Learn about Cryptocurrency</h5>
+                                <p class="description_2">Investing can help grow your wealth. Watch this video to learn
+                                    the
+                                    basics of Cryptocurrency and how to get started.</p>
+                                <div class="video-container_2">
+                                    <button id="showVideoBtn_2"
+                                        aria-label="Click to watch a video on how to invest in cryptocurrency">Watch
+                                        Video on Cryptocurrency</button>
+                                    <iframe id="investmentVideo_2" src="https://www.youtube.com/embed/dQw4w9WgXcQ"
+                                        title="Cryptocurrency Video"></iframe>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="col-md-4">
+                        <form>
+                            <div class="container_3">
+                                <h5>Learn about Mutual Funds</h5>
+                                <p class="description_3">Investing can help grow your wealth. Watch this video to learn
+                                    the basics of Mutual Funds and how to get started.</p>
+                                <div class="video-container_3">
+                                    <button id="showVideoBtn_3"
+                                        aria-label="Click to watch a video on how to invest in Mutual Funds">Watch Video
+                                        on Mutual Funds</button>
+                                    <iframe id="investmentVideo_3" src="https://www.youtube.com/embed/dQw4w9WgXcQ"
+                                        title="Mutual Funds Video"></iframe>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <form>
+                            <div class="container_4">
+                                <h5>Learn about Fixed Deposite</h5>
+                                <p class="description_4">Investing can help grow your wealth. Watch this video to learn
+                                    the basics of Fixed Deposite and how to get started.</p>
+                                <div class="video-container_4">
+                                    <button id="showVideoBtn_4"
+                                        aria-label="Click to watch a video on how to invest in Fixed Deposite">Watch
+                                        Video on Fixed Deposit</button>
+                                    <iframe id="investmentVideo_4" src="https://www.youtube.com/embed/dQw4w9WgXcQ"
+                                        title="Fixed Deposite Video"></iframe>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="col-md-4">
+                        <form>
+                            <div class="container_5">
+                                <h5>Learn about Recurring Deposite</h5>
+                                <p class="description_5">Investing can help grow your wealth. Watch this video to learn
+                                    the basics of Recurring Deposite and how to get started.</p>
+                                <div class="video-container_5">
+                                    <button id="showVideoBtn_5"
+                                        aria-label="Click to watch a video on how to invest in Recurring Deposite">Watch
+                                        Video on Recurring Deposit</button>
+                                    <iframe id="investmentVideo_5" src="https://www.youtube.com/embed/dQw4w9WgXcQ"
+                                        title="Recurring Deposite Video"></iframe>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        const showVideoBtn_1 = document.getElementById('showVideoBtn_1');
+        const investmentVideo_1 = document.getElementById('investmentVideo_1');
+
+        const showVideoBtn_2 = document.getElementById('showVideoBtn_2');
+        const investmentVideo_2 = document.getElementById('investmentVideo_2');
+
+        const showVideoBtn_3 = document.getElementById('showVideoBtn_3');
+        const investmentVideo_3 = document.getElementById('investmentVideo_3');
+
+        const showVideoBtn_4 = document.getElementById('showVideoBtn_4');
+        const investmentVideo_4 = document.getElementById('investmentVideo_4');
+
+        const showVideoBtn_5 = document.getElementById('showVideoBtn_5');
+        const investmentVideo_5 = document.getElementById('investmentVideo_5');
+
+        showVideoBtn_1.addEventListener('click', function () {
+            investmentVideo_1.style.display = 'block';
+            showVideoBtn_1.style.display = 'none';
+        });
+
+        showVideoBtn_2.addEventListener('click', function () {
+            investmentVideo_2.style.display = 'block';
+            showVideoBtn_2.style.display = 'none';
+        });
+
+        showVideoBtn_3.addEventListener('click', function () {
+            investmentVideo_3.style.display = 'block';
+            showVideoBtn_3.style.display = 'none';
+        });
+
+        showVideoBtn_4.addEventListener('click', function () {
+            investmentVideo_4.style.display = 'block';
+            showVideoBtn_4.style.display = 'none';
+        });
+
+        showVideoBtn_5.addEventListener('click', function () {
+            investmentVideo_5.style.display = 'block';
+            showVideoBtn_5.style.display = 'none';
+        });
+    </script>
+</body>
+
+</html>
