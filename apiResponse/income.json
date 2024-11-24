@@ -1,0 +1,24 @@
+[
+    {
+        "Id": 1,
+        "IncomeSource": "Rent",
+        "Date": "01-11-2024",
+        "TotalCTC": 0,
+        "MonthlyIncome": 12000,
+        "IsDeleted": false        
+    },
+    {
+        "Id": 2,
+        "IncomeSource": "Salary",
+        "Date": "01-11-2024",
+        "TotalCTC": 1200000,
+        "MonthlyIncome": 100000        
+    },
+    {
+        "Id": 3,
+        "IncomeSource": "Freelance",
+        "Date": "01-11-2024",
+        "TotalCTC": 0,
+        "MonthlyIncome": 50000        
+    }
+]
