@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title> Wealth Sphere - Finance Tracker</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src=""></script>
 
   <style>
     .main-content {
@@ -126,7 +127,7 @@
       }
 
       h1 {
-        font-size: 1.8rem;        
+        font-size: 1.8rem;
       }
 
       p {
@@ -230,64 +231,69 @@
   </style>
 </head>
 
-<body>
+<body onload="getData()">
+
   <div class="main-container">
     <div class="sidebar">
       <iframe src="/pages/commonCode/layout.html" name="layout">
-      </iframe> 
+      </iframe>
     </div>
     <div class="content-body">
       <h1>Income</h1>
-      <div class="tabs">      
-      <div class="tab-buttons">
-        <button class="tab-button active" onclick="showTab('viewIncome')">View Income</button>
-        <button class="tab-button" onclick="showTab('addEditIncome')">Add/Edit Income</button>
-      </div>
-
-      <div class="tab-content">
-        <div id="viewIncome" class="tab active">
-          <table style="width:100%" id="dataTable">
-            <tr>
-              <th>Income Source</th>
-              <th>Date</th>
-              <th>Total CTC</th>
-              <th>Monthly Income</th>
-              <th>Actions</th>
-            </tr>   
-          </table>
+      <div class="tabs">
+        <div class="tab-buttons">
+          <button class="tab-button active" onclick="showTab('viewIncome')">View Income</button>
+          <button class="tab-button" onclick="showTab('addEditIncome')">Add/Edit Income</button>
         </div>
-        <div id="addEditIncome" class="tab">
-          <form id="incomeForm">            
-            <label>Income Source</label>
-            <select class="custom-select" id="incomeSource">
-              <option selected="">Select the Source</option>
-              <option value="Salary">Salary</option>
-              <option value="Rent">Rent</option>
-              <option value="Stocks">Stocks</option>
-              <option value="Freelancing">Freelancing</option>
-              <option value="Others">Others</option>
-            </select>
-            <label id="others" style="display: none;">Other Income Source </label>
-            <input type="text" id="otherSource" style="display: none;" placeholder="Enter your  other Income Source">
-            <span id="incomeSourceError"></span><br>
 
-            <label>Date</label>
-            <input type="date" id="date" placeholder="Enter the Date" required>
+        <div class="tab-content">
+          <div id="viewIncome" class="tab active">
+            <table style="width:100%" id="dataTable">
+              <tr>
+                <th id="hiddenId" style="display: none;">Id</th>
+                <th>Income Source</th>
+                <th>Date</th>
+                <th>Total CTC</th>
+                <th>Monthly Income</th>
+                <th>Actions</th>
+              </tr>
+            </table>
+          </div>
+          <div id="addEditIncome" class="tab">
+            <form id="incomeForm">
+              <label>Income Source</label>
+              <select class="custom-select" id="incomeSource">
+                <option selected="">Select the Source</option>
+                <option value="Salary">Salary</option>
+                <option value="Rent">Rent</option>
+                <option value="Stocks">Stocks</option>
+                <option value="Freelancing">Freelancing</option>
+                <option value="Others">Others</option>
+              </select>
+              <label id="others" style="display: none;">Other Income Source </label>
+              <input type="text" id="otherSource" style="display: none;" placeholder="Enter your  other Income Source">
+              <span id="incomeSourceError"></span><br>
 
-            <label>Total CTC</label>
-            <input type="number" id="ctc" placeholder="Enter your Total CTC" required>
-            <span id="ctcError"></span><br>
+              <label>Date</label>
+              <input type="date" id="date" placeholder="Enter the Date" required>
 
-            <label>Monthly Income</label>
-            <input type="number" id="monthlyIncome" placeholder="Enter your Monthly Income" required>
-            <span id="monthlyIncomeError"></span><br>
+              <label>Total CTC</label>
+              <input type="number" id="ctc" placeholder="Enter your Total CTC" required>
+              <span id="ctcError"></span><br>
 
-            <button type="submit">Submit</button>
-          </form>
+              <label>Monthly Income</label>
+              <input type="number" id="monthlyIncome" placeholder="Enter your Monthly Income" required>
+              <span id="monthlyIncomeError"></span><br>
+
+              <button type="submit" onclick="saveData()">Submit</button>
+            </form>
+            <div class="popup" id="popup">
+              <p id="popupId">Income added Successfully</p>
+              <!-- <button id="okButton">Ok</button> -->
+            </div>
+          </div>
         </div>
       </div>
-      </div>
-
     </div>
   </div>
 
@@ -297,50 +303,119 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
   <script>
 
-      fetch('/apiResponse/income.json')
-      .then(response => response.json()) 
-      .then(data => {
-        const tableBody = document.querySelector('#dataTable tbody');
-        
-        data.forEach(user => {
-          const row = document.createElement('tr');
-          
-          const sourceCell = document.createElement('td');
-          sourceCell.textContent = user.IncomeSource;
-          row.appendChild(sourceCell);
-          
-          const dateCell = document.createElement('td');
-          dateCell.textContent = user.Date;
-          row.appendChild(dateCell);
-          
-          const totalCTCCell = document.createElement('td');
-          totalCTCCell.textContent = user.TotalCTC;
-          row.appendChild(totalCTCCell);
-          
-          const monthlyIncomeCell = document.createElement('td');
-          monthlyIncomeCell.textContent = user.MonthlyIncome;
-          row.appendChild(monthlyIncomeCell);
+    async function getData() {
+      const response = await fetch("https://localhost:7263/api/Income?userId=E8825670-EB20-4380-EB1D-08DD0D7A845F", {
+        headers: {
+          "Content-Type": "application/json",
+        },
+        method: "GET",
+        mode: "cors"
+      }).then(response => response.json())
+        .then(data => {
+          const tableBody = document.querySelector('#dataTable tbody');
 
-          const actionCell = document.createElement('td');
-          const deleteButton = document.createElement('button');
-          deleteButton.textContent = 'Delete';  
+          data.forEach(user => {
+            const row = document.createElement('tr');
 
-          deleteButton.onclick = function(){
-            row.remove();            
-          };
+            // const idCell = document.createElement('td');
+            // idCell.textContent = user.id;
+            // row.appendChild(idCell);
 
-          // actionCell.appendChild( )
-          // actionCell.se
+            const sourceCell = document.createElement('td');
+            sourceCell.textContent = user.incomeSource;
+            row.appendChild(sourceCell);
 
-         actionCell.appendChild(deleteButton);
-         row.appendChild(actionCell);
-         
-          tableBody.appendChild(row);  // Append the row to the table body
+            const dateCell = document.createElement('td');
+            const date = new Date(user.date);
+            dateCell.textContent = date.toLocaleDateString('en-GB');
+            row.appendChild(dateCell);
+
+            const totalCTCCell = document.createElement('td');
+            totalCTCCell.textContent = user.totalCTC;
+            row.appendChild(totalCTCCell);
+
+            const monthlyIncomeCell = document.createElement('td');
+            monthlyIncomeCell.textContent = user.monthlyIncome;
+            row.appendChild(monthlyIncomeCell);
+
+            const actionCell = document.createElement('td');
+            const deleteButton = document.createElement('button');
+            deleteButton.textContent = 'Delete';
+
+            deleteButton.onclick = function () {
+              deleteData(user.id);
+            };
+
+            actionCell.appendChild(deleteButton);
+            row.appendChild(actionCell);
+
+            tableBody.appendChild(row);  // Append the row to the table body
+          });
+        })
+        .catch(error => {
+          console.error('Error loading the JSON file:', error);
         });
-      })
-      .catch(error => {
-        console.error('Error loading the JSON file:', error);
-      });       
+    }
+
+    async function saveData() {
+
+      var incomeSource = document.getElementById("incomeSource").value;
+      var otherSource = document.getElementById("otherSource").value;
+      var date = document.getElementById("date").value;
+      var ctc = document.getElementById("ctc").value;
+      var monthlyIncome = document.getElementById("monthlyIncome").value;
+
+      const response = await fetch("https://localhost:7263/api/Income", {
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(
+          {
+            "incomeSource": incomeSource,
+            "date": date,
+            "totalCTC": ctc,
+            "monthlyIncome": monthlyIncome,
+            "otherSource": otherSource,
+            "userId": "E8825670-EB20-4380-EB1D-08DD0D7A845F"
+          }),
+        method: "POST",
+        mode: "cors"
+      }).then(response => response)
+        .then(data => {
+          if (data.status === 200)
+            alert('Income added Successfully !');
+        })
+        .catch(error => {
+          console.error('Error loading the JSON file:', error);
+        });
+
+      document.getElementById("incomeSource").value = "Select the Source";
+      document.getElementById("otherSource").value = " ";
+      document.getElementById("date").value = " ";
+      document.getElementById("ctc").value = " ";
+      document.getElementById("monthlyIncome").value = " ";
+
+    }
+
+
+    async function deleteData(id) {
+      const response = await fetch(`https://localhost:7263/api/Income/${id}`, {
+        headers: {
+          "Content-Type": "application/json",
+        },
+        method: "DELETE",
+        mode: "cors"
+      }).then(response => response)
+        .then(data => {
+          if (data.status === 200)
+            alert('Data Deleted Successfully !');
+
+        })
+        .catch(error => {
+          console.error('Error loading the JSON file:', error);
+        });
+      window.location.reload();
+    }
 
     document.getElementById("incomeForm").onsubmit = function (event) {
       event.preventDefault();
@@ -379,6 +454,8 @@
       if (activeButton) {
         activeButton.classList.add('active');
       }
+      if (tabId === 'viewIncome')
+        window.location.reload();
     }
 
     function incomeValidation() {
@@ -390,11 +467,11 @@
       const income = document.getElementById("monthlyIncome").value
       var valid = true
 
-      if (source !="" && /[^a-zA-Z\s]+$/.test(source)) {
+      if (source != "" && /[^a-zA-Z\s]+$/.test(source)) {
         document.getElementById("incomeSourceError").innerText = "Income source should only contain letters and spaces";
         valid = false;
       }
-      else {      
+      else {
         document.getElementById("incomeSourceError").innerText = ""
       }
 
@@ -415,13 +492,16 @@
       }
       return valid;
     }
+
     document.getElementById("incomeSource").onchange = incomeValidation
     document.getElementById("otherSource").onkeyup = incomeValidation
     document.getElementById("ctc").onkeyup = incomeValidation
-    document.getElementById("ctc").onchange = incomeValidation 
+    document.getElementById("ctc").onchange = incomeValidation
     document.getElementById("monthlyIncome").onkeyup = incomeValidation
     document.getElementById("monthlyIncome").onchange = incomeValidation
+    document.getElementById("viewIncome").onload = getData
 
   </script>
 </body>
+
 </html>
