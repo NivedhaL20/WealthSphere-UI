@@ -71,26 +71,6 @@
       display: block;
     }
 
-    /* Input fields */
-    input[type="number"],
-    input[type="text"] {
-      width: 100%;
-      padding: 12px;
-      margin: 10px 0 20px 0;
-      font-size: 16px;
-      border: 1px solid #ccc;
-      border-radius: 4px;
-      box-sizing: border-box;
-    }
-
-    /* Focus effect on inputs */
-    input[type="number"]:focus,
-    input[type="text"]:focus {
-      border-color: #4CAF50;
-      outline: none;
-      box-shadow: 0 0 5px rgba(76, 175, 80, 0.5);
-    }
-
     /* Input error message */
     span {
       color: red;
@@ -228,6 +208,18 @@
       border: 1px solid black;
       border-collapse: collapse;
     }
+
+    th {
+      padding: 0 0.5rem;
+    }
+
+    td button {
+      width: unset;
+      display: block;
+      padding: 0.25rem 1.5rem;
+      margin: 0.25rem auto;
+      color: white;
+    }
   </style>
 </head>
 
@@ -263,51 +255,66 @@
           </div>
           <div id="addEditInvestment" class="tab">
             <form id="investmentForm">
-              <label>Investment Type</label>
-              <select class="custom-select" id="investmentType">
-                <option selected="">Select the Source</option>
-                <option value="Stocks">Stocks</option>
-                <option value="Mutual Funds">Mutual Funds</option>
-                <option value="Fixed Deposite">Fixed Deposite</option>
-                <option value="Recurring Deposite">Recurring Deposite</option>
-                <option value="Gold Scheme">Gold Scheme</option>
-                <option value="Cryptocurrency">Cryptocurrency</option>
-                <option value="Others">Others</option>
-              </select>
-              <label id="othersInvestment" style="display:none;">Other Investment Type</label>
-              <input type="text" id="otherType" placeholder="Enter your  other Investment Type" style="display: none;"
-                required>
-              <span id="investmentTypeError"></span><br>
+              <div class="form-group">
+                <label>Investment Type</label>
+                <select class="custom-select form-control" id="investmentType">
+                  <option selected="">Select the Source</option>
+                  <option value="Stocks">Stocks</option>
+                  <option value="Mutual Funds">Mutual Funds</option>
+                  <option value="Fixed Deposite">Fixed Deposite</option>
+                  <option value="Recurring Deposite">Recurring Deposite</option>
+                  <option value="Gold Scheme">Gold Scheme</option>
+                  <option value="Cryptocurrency">Cryptocurrency</option>
+                  <option value="Others">Others</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label id="othersInvestment" style="display:none;">Other Investment Type</label>
+                <input type="text" class="form-control" id="otherType" placeholder="Enter your  other Investment Type"
+                  style="display: none;" required>
+                <span id="investmentTypeError"></span><br>
+              </div>
 
+              <div class="form-group">
+                <label>Financial Institute</label>
+                <select class="custom-select form-control" id="financialInstitute">
+                  <option selected="">Select the Source</option>
+                  <option value="Bank">Bank</option>
+                  <option value="Postoffice">Postoffice</option>
+                  <option value="Jewlery shop">Jewlery shop</option>
+                  <option value="Cryptocurrency Platform">Cryptocurrency Platform</option>
+                  <option value="Portfolio">Portfolio</option>
+                  <option value="Others">Others</option>
+                </select>
+              </div>
 
-              <label>Financial Institute</label>
-              <select class="custom-select" id="financialInstitute">
-                <option selected="">Select the Source</option>
-                <option value="Bank">Bank</option>
-                <option value="Postoffice">Postoffice</option>
-                <option value="Jewlery shop">Jewlery shop</option>
-                <option value="Cryptocurrency Platform">Cryptocurrency Platform</option>
-                <option value="Portfolio">Portfolio</option>
-                <option value="Others">Others</option>
-              </select>
+              <div class="form-group">
+                <label id="otherInstitute" style="display:none;">Other Financial Institute</label>
+                <input type="text" class="form-control" id="otherFinance"
+                  placeholder="Enter your other Financial Institute" style="display:none;" required>
+                <span id="financialInstituteError"></span><br>
+              </div>
 
-              <label id="otherInstitute" style="display:none;">Other Financial Institute</label>
-              <input type="text" id="otherFinance" placeholder="Enter your other Financial Institute"
-                style="display:none;" required>
-              <span id="financialInstituteError"></span><br>
+              <div class="form-group">
+                <label>Date of Payment</label>
+                <input type="date" class="form-control" id="dateOfPayment" placeholder="Enter your Date of Payment"
+                  required><br>
+              </div>
 
-              <label>Date of Payment</label>
-              <input type="date" id="dateOfPayment" placeholder="Enter your Date of Payment" required><br>
+              <div class="form-group">
+                <label>Amount</label>
+                <input type="number" class="form-control" id="investmentAmount"
+                  placeholder="Enter your Amount of Investment" required>
+                <span id="amountError"></span><br>
+              </div>
 
-              <label>Amount</label>
-              <input type="number" id="investmentAmount" placeholder="Enter your Amount of Investment" required>
-              <span id="amountError"></span><br>
+              <div class="form-group">
+                <label>Purpose</label>
+                <input type="textarea" class="form-control" id="purpose" placeholder="Enter your purpose of Investment">
+                <span id="purposeError"></span><br>
+              </div>
 
-              <label>Purpose</label>
-              <input type="textarea" id="purpose" placeholder="Enter your purpose of Investment">
-              <span id="purposeError"></span><br>
-
-              <button type="submit" onclick="saveData()">Submit</button>
+              <button type="submit" style="color: white;" onclick="saveData()">Submit</button>
             </form>
           </div>
         </div>

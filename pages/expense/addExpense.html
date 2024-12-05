@@ -223,11 +223,23 @@
     }
 
     table,
-    th,
-    td {
-      border: 1px solid black;
-      border-collapse: collapse;
-    }
+  th,
+  td {
+    border: 1px solid black;
+    border-collapse: collapse;
+  }
+
+  th {
+    padding: 0 0.5rem;
+  }
+
+  td button {
+    width: unset;
+    display: block;
+    padding: 0.25rem 1.5rem;
+    margin: 0.25rem auto;
+    color: white;
+  }
   </style>
 </head>
 
@@ -269,6 +281,7 @@
                 <option value="Transport">Transport</option>
                 <option value="Insurance">Insurance</option>
                 <option value="Education">Education</option>
+                <option value="Debts">Debts</option>
                 <option value="Food">Food</option>
                 <option value="Entertainment">Entertainment</option>
                 <option value="Others">Others</option>
