@@ -6,6 +6,214 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Wealth Sphere - Finance Tracker</title>
     <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        /* Header styling */
+        header {
+            background-color: #6359E9;
+            /* Background color */
+            color: #FFFFFF;
+            /* White text color for contrast */
+            padding: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            /* Space between logo/title and buttons */
+            flex-wrap: wrap;
+            /* Allow header items to wrap */
+            width: 100%;
+            /* Ensure header spans the full width */
+        }
+
+        /* Logo container aligned to the left */
+        header .logo-container {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            /* Align logo and title to the left */
+            margin-right: auto;
+            /* Push everything else to the right */
+        }
+
+        .logo {
+            height: 70px;
+            /* Adjust the height as needed */
+            margin-right: 10px;
+        }
+
+        /* General button styling */
+        header button {
+            background-color: #ffffff;
+            color: #6359E9;
+            /* Blue color to match the theme */
+            border: 2px solid #6359E9;
+            padding: 12px 25px;
+            font-size: 1rem;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin: 5px;
+            /* Space between buttons */
+            text-align: center;
+            white-space: nowrap;
+            display: inline-block;
+        }
+
+        /* Hover effect for buttons */
+        header button:hover {
+            background-color: #6359E9;
+            color: #ffffff;
+            border-color: #6359E9;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Footer styling */
+        footer {
+            background-color: #6359E9;
+            color: #FFFFFF;
+            text-align: center;
+            padding: 1rem;
+        }
+
+        h1 {
+            font-family: Plus Jakarta Sans;
+            margin: 0;
+            color: #FFFFFF;
+        }
+
+        /* Main content styling */
+        main {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+
+        form {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+            background-color: whitesmoke;
+            border-radius: 8px;
+            width: 100%;
+            max-width: 800px;
+            /* Ensures the form doesn't stretch too wide */
+        }
+
+        /* Main section styling */
+        .main-section {
+            text-align: center;
+        }
+
+        .column {
+            max-width: 800px;
+            width: 100%;
+        }
+
+        /* Centered Heading Styling */
+        .main-section h2 {
+            font-size: 2rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            color: #333;
+            /* Dark color for text */
+        }
+
+        /* Paragraph Styling */
+        .main-section p {
+            font-size: 1.2rem;
+            line-height: 1.6;
+            color: #555;
+            /* Slightly lighter color for the paragraph */
+        }
+
+        /* Contact Section Styling */
+        .contact-container {
+            padding: 4rem 1rem;
+            background-color: #f9f9f9;
+            text-align: center;
+        }
+
+        .contact-container h2 {
+            color: #333;
+            margin-bottom: 2rem;
+        }
+
+        .contact-info {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .contact-info h3 {
+            color: #333;
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-info p {
+            font-size: 1.2rem;
+            margin: 0.5rem 0;
+        }
+
+        .social-links a {
+            text-decoration: none;
+            color: #6359E9;
+            margin: 0.5rem;
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            color: #4e4acc;
+        }
+
+        .contact-info .phone-number {
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-top: 1rem;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+        }
+
+
+        .alignBtn {
+            display: flex;
+            justify-content: flex-end;
+            flex-grow: 1;
+        }
+
+        /* Media Query for Smaller Screens */
+        @media (max-width: 768px) {
+            .main-section h2 {
+                font-size: 1.5rem;
+            }
+
+            .main-section p {
+                font-size: 1rem;
+            }
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -88,7 +296,8 @@
         input[type="reset"] {
             width: 100%;
             padding: 12px;
-            background-color: #ddd;
+            background-color: #f44336;
+            color: white;
             border: none;
             border-radius: 6px;
             font-size: 16px;
@@ -123,12 +332,12 @@
 <body>
     <form id="loginForm">
         <h1>Login</h1>
-        <label>Email id</label>
+        <label><b>Email id</b></label>
         <input id="loginEmail" type="email" placeholder="Enter your email">
         <span id="loginEmailError"></span><br>
 
 
-        <label>Password</label>
+        <label><b>Password</b></label>
         <input id="loginPassword" type="password" placeholder="Enter your password">
         <span id="loginPasswordError"></span><br>
 
@@ -188,16 +397,16 @@
                         }),
                     method: "POST",
                     mode: "cors"
-                }).then(response => response)
-                    .then(data => {
-                        if (data.status === 200)
-                            window.location.href = "../dashboardOverview/overview.html";
-                        else
-                           alert("Incorrect Username or Password") 
-                    })
-                    .catch(error => {
-                        console.error('Error loading the JSON file:', error);
-                    });
+                }).then(response => {
+                    sessionStorage.setItem("UserName", "Logesh") //data.username
+                    if (response.status === 200)
+                        window.location.href = "../dashboardOverview/overview.html";
+                    else
+                        alert("Incorrect Username or Password");
+                })
+                .catch(error => {
+                    console.error('Error loading the JSON file:', error);
+                });
             }
         }
     </script>

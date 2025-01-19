@@ -20,6 +20,7 @@
       margin-left: 10px;
       padding: 1 0px;
     }
+
     .content-body {
       flex: 1;
       overflow-y: auto;
@@ -100,6 +101,7 @@
       max-width: 13%;
       height: auto;
     }
+
     #logoutIcon {
       position: absolute;
       top: 512px;
@@ -107,6 +109,16 @@
       max-width: 12%;
       height: auto;
     }
+
+    /* #userIcon {
+      position: absolute;
+      top: 655px;
+      left: 12px;
+      max-width: 22%;
+      height: auto;
+      z-index: 10;
+    } */
+
 
     #pad {
       position: absolute;
@@ -169,7 +181,6 @@
       font-size: 2.5rem;
       font-weight: bold;
     }
-
   </style>
 </head>
 
@@ -201,12 +212,14 @@
     <a target="_parent" href="../feedBack/addFeedBack.html">
       <img id="feedbackIcon" src="../../images/feedbackIcon.png">
     </a>
-    <a target="_parent"   href="../auth/logout.html">
+    <a target="_parent" href="../auth/logout.html">
       <img id="logoutIcon" src="../../images/logoutIcon.png">
     </a>
-
+    <!-- <img id="userIcon" src="../../images/userIcon.png" alt="Upload image">  
+       <p id="myUserName"></p>  -->
+    
     <h4 id="pad">Wealth Sphere</h4>
-    <div class="containers">
+    <div class="containers">  
       <button onclick="parent.location.href='../dashboardOverview/overView.html'">Dashboard
         Overview</button>
       <button onclick="parent.location.href='../income/addIncome.html'">Income</button>
@@ -218,14 +231,23 @@
       <button onclick="parent.location.href='../learnOnInvestment/learn.html'">Learn
         on Investment</button>
       <button onclick="parent.location.href='../feedBack/addFeedBack.html'">Feedback</button>
-      
+
       <button onclick="parent.location.href='../auth/logout.html'">Logout</button>
       <hr>
+      <button id="userButton">
+        <p id="myUserName">           
+      </button>
     </div>
   </div>
 
-  
+
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 
+  <!-- <script>
+    //Get it from session and load it here  
+    // var userName = sessionStorage.getItem("UserName");
+    document.getElementById("myUserName").innerHTML = userName; 
+  </script> -->
 </body>
+
 </html>

@@ -15,6 +15,7 @@
             display: flex;
             flex-direction: column;
             min-height: 100vh;
+            background-color: whitesmoke;   
         }
 
         /* Header styling */
@@ -42,8 +43,11 @@
         }
 
         h1 {
+            font-family: Plus Jakarta Sans;
             margin: 0;
             color: #FFFFFF;
+            font-style: bold;   
+            padding-left:0px; 
         }
 
         .header-button-container {
@@ -134,7 +138,7 @@
         p {
             font-size: 1.4rem;
             line-height: 1.5;
-            text-shadow: 1px 1px 8px rgba(0, 0, 0, 0.7);
+            text-shadow: 1px 2px 8px rgba(0, 0, 0, 0.7);
         }
 
         .getStarted {
@@ -162,7 +166,9 @@
             padding: 20px;
         }
 
-        .col-left, .col-center, .col-right {
+        .col-left,
+        .col-center,
+        .col-right {
             width: 30%;
         }
 
@@ -173,24 +179,41 @@
             text-align: center;
         }
 
-        .container_1, .container_2, .container_3 {
+        .container_1,
+        .container_2,
+        .container_3 {
             width: 100%;
-            margin: 0 auto;
+            margin: 10px auto;
             padding: 20px;
             background-color: #fff;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            box-shadow: 10px 10px 200px rgba(0, 0, 0, 0.1);
             border-radius: 8px;
             font-family: Arial, sans-serif;
         }
 
-        /* Responsive adjustments */
+        .logo-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+        }
+
+        
+        .alignBtn {
+            display: flex;
+            justify-content: flex-end;      
+            flex-grow: 1;
+        }   
+
         @media (max-width: 768px) {
             .main-content {
                 flex-direction: column;
                 align-items: center;
             }
 
-            .col-left, .col-center, .col-right {
+            .col-left,
+            .col-center,
+            .col-right {
                 width: 100%;
                 margin-bottom: 20px;
             }
@@ -211,9 +234,11 @@
         <div class="logo-container">
             <img src="../../images/Wealth_Sphere_logo_in_blue_color-removebg-preview.png" alt="Logo" class="logo">
             <h1>Wealth Sphere</h1>
-            <button onclick="parent.location.href='../auth/loginPage.html'">Login</button>
-            <button onclick="parent.location.href='../auth/registration.html'">Register</button>
-            <button onclick="parent.location.href='../aboutUs/about.html'">About Us</button>
+            <div class="alignBtn">
+                <button onclick="parent.location.href='../auth/loginPage.html'">Login</button>
+                <button onclick="parent.location.href='../auth/registration.html'">Register</button>
+                <button onclick="parent.location.href='../aboutUs/about.html'">About Us</button>
+            </div>
         </div>
     </header>
 
@@ -222,7 +247,7 @@
             <div class="column">
                 <h2>"Unleash Your Wealth, Unleash Your Potential!"</h2>
                 <p>Unlock Your Financial Potential with Expert Guidance and a Thriving Community!</p>
-                <button id="getStartedBtn" class="getStarted">Get Started --></button>
+                <button id="getStartedBtn" class="getStarted">Get Started</button>
             </div>
         </section>
     </main>
@@ -235,7 +260,8 @@
                 <div class="container_1">
                     <h5>Manage Wealth more Efficiently</h5>
                     <p class="description_1">Investing allows you to grow your wealth over time by taking advantage of
-                        market opportunities. Learn how to manage your finances, diversify your investments, and maximize
+                        market opportunities. Learn how to manage your finances, diversify your investments, and
+                        maximize
                         returns.</p>
                 </div>
             </form>
@@ -245,8 +271,9 @@
         <div class="col-center">
             <form>
                 <div class="container_2">
-                    <h5>Learn about Investing</h5>
-                    <p class="description_2">Investing in stocks, bonds, and other assets can be a great way to secure your
+                    <h5>Learn about Investing</h5>  
+                    <p class="description_2">Investing in stocks, bonds, mutual funds, fixed deposite and other assets can be a great way to secure
+                        your
                         financial future. Find the resources and tools you need to get started today.</p>
                 </div>
             </form>
@@ -257,7 +284,8 @@
             <form>
                 <div class="container_3">
                     <h5>Overview Dashboard</h5>
-                    <p class="description_3">The Overview Dashboard offers a visual snapshot of your finances, with graphs
+                    <p class="description_3">The Overview Dashboard offers a visual snapshot of your finances, with
+                        graphs
                         tracking income, expenses, and investments, helping you make informed decisions.</p>
                 </div>
             </form>
